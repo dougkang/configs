@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/dougkang/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -54,6 +54,8 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(git tmux virtualenvwrapper docker web-search encode64)
 
 export RPS1="%{$reset_color%}"
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -88,8 +90,16 @@ export DEFAULT_USER="💩"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ctags-build="ctags -R -f ./.tags ."
 
+# Logbook
 function lb() {
-    vim ~/logbook/$(date '+%Y-%m-%d').md
+  LB_DIR="$HOME/lb"
+  LB_TPL="$LB_DIR/template.md"
+  TODAY="$(date '+%Y-%m-%d')"
+  LB_FILE="$LB_DIR/$TODAY.md"
+  if [ ! -f $LB_FILE ]; then
+    cat $LB_TPL | sed "s/{{DATE}}/$TODAY/g" >> $LB_FILE
+  fi
+  vim $LB_FILE
 }
 
-source "/Users/dougkang/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+source "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"

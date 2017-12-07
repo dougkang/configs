@@ -3,6 +3,8 @@ filetype off                  " required
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
 Plug 'kien/ctrlp.vim'
@@ -47,37 +49,23 @@ au BufNewFile,BufRead *.py
     \set autoindent
     \set fileformat=unix
 
-"python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
-
 let python_highlight_all=1
 
 " *** END python-specific settings
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set wildignore+=**/node_modules/**,**/project/**,**/target/**,Applications/**,Library/**,bin/**,lib/**,include/**
+set wildignore+=**/venv/**
 
+" Airline settings
+" let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='wombat'
 
 " CtrlP settings
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-
-" Initialize powerline, set to absolute path to make sure it works even in
-" virtualenv
-python import sys; sys.path.append("/Users/dougkang/Library/Python/2.7/lib/python/site-packages")
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
-set laststatus=2
-set showtabline=2 " Always display the tabline, even if there is only one tab
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+let g:ctrlp_working_path_mode = ''
 
 " netrw settings so that its like NERDtree
 let g:netrw_banner=0
