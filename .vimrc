@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
 Plug 'kien/ctrlp.vim'
@@ -36,6 +37,7 @@ set clipboard=unnamed
 
 syntax on
 set ruler
+set tags=tags=./.tags,.tags;$HOME
 
 " *** START Python-specific settings
 
@@ -78,6 +80,9 @@ let g:netrw_winsize=25
 let test#strategy = "dispatch"
 let test#python#runner = 'pytest'
 let g:test#preserve_screen = 1
+
+" ackprg
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " My shortcuts
 nnoremap <Space> <Nop>

@@ -90,16 +90,7 @@ export DEFAULT_USER="💩"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ctags-build="ctags -R -f ./.tags ."
 
-# Logbook
-function lb() {
-  LB_DIR="$HOME/lb"
-  LB_TPL="$LB_DIR/template.md"
-  TODAY="$(date '+%Y-%m-%d')"
-  LB_FILE="$LB_DIR/$TODAY.md"
-  if [ ! -f $LB_FILE ]; then
-    cat $LB_TPL | sed "s/{{DATE}}/$TODAY/g" >> $LB_FILE
-  fi
-  vim $LB_FILE
-}
-
 source "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+
+
+source "/home/doug.kang/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
